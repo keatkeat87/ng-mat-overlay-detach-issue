@@ -10,14 +10,11 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, DestroyRef, inje
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ModalContainerComponent {
-  constructor() {
-    inject(DestroyRef).onDestroy(() => console.log('slide modal container destroyed'));
-  }
-
   private readonly overlayRef = inject(OverlayRef);
   private cdk = inject(ChangeDetectorRef);
+
   close() {
     this.overlayRef.detach();
-    // this.cdk.detectChanges();
+    // this.cdk.detectChanges(); // without detectChanges no work
   }
 }
